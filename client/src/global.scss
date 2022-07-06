@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+$main-color: rgb(38, 172, 33);
+$main-font: "Lato", sans-serif;
+$shadow-color: rgba(185, 36, 36, 0.384);
+$additional-color: rgb(185, 36, 36);
+$font-color: rgb(82, 77, 77);
+
+.card {
+  border: 1px solid $main-color;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px $shadow-color;
+  background-color: #fff;
+  color: $font-color;
+  font-family: $main-font;
+}
+
+.custom {
+  textarea {
+    outline: rgb(74, 199, 70) !important;
+    border: 3px solid $main-color;
+    color: red;
+  }
+}
