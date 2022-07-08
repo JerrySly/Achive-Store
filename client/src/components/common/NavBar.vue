@@ -18,6 +18,11 @@
           ><icon-message></icon-message
         ></router-link>
       </li>
+      <li>
+        <router-link :to="{ name: 'Messages' }"
+          ><icon-cog></icon-cog
+        ></router-link>
+      </li>
       <li class="spacer"></li>
     </ul>
   </div>
@@ -43,7 +48,7 @@ ul {
     flex: 1;
   }
   .spacer {
-    flex: 4;
+    flex: 3;
   }
 }
 .logo {
