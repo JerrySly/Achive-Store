@@ -31,10 +31,9 @@
 
 <script>
 import { user } from "@/data/user.js";
-import baseButton from "../base/baseButton.vue";
 import UserProfileAvatar from './userProfileAvatar.vue';
 export default {
-  components: { baseButton, UserProfileAvatar },
+  components: {  UserProfileAvatar },
   props: {
     id: {
       type: String,

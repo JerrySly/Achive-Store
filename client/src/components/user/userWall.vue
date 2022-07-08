@@ -1,24 +1,23 @@
 <template>
-  <div class="card">
-    <div class="custom">
-        <textarea class="custom-textarea" name="" id="" cols="30" rows="10"></textarea>
-    </div>
-    <div>
-        <post-item></post-item>
+  <div>
+    <div class="card">
+      <base-sender-block></base-sender-block>
+      <post-list style="margin-top: 30px;"></post-list>
     </div>
   </div>
 </template>
 
 <script>
-import postItem from '../post/postItem.vue'
+import postItem from "../post/postItem.vue";
+import PostList from '../post/postList.vue';
 export default {
- components: { postItem },
- setup(){
-
- }
-}
+  components: { postItem, PostList },
+  setup() {},
+};
 </script>
 
 <style lang="scss" scoped>
-
+.card {
+  padding: 10px;
+}
 </style>

@@ -5,6 +5,10 @@ $shadow-color: rgba(185, 36, 36, 0.384);
 $additional-color: rgb(185, 36, 36);
 $font-color: rgb(82, 77, 77);
 
+body{
+  font-family: $main-font;
+}
+
 .card {
   border: 1px solid $main-color;
   border-radius: 8px;
@@ -14,10 +18,7 @@ $font-color: rgb(82, 77, 77);
   font-family: $main-font;
 }
 
-.custom {
-  textarea {
-    outline: rgb(74, 199, 70) !important;
-    border: 3px solid $main-color;
-    color: red;
-  }
-}
+
+
+
+

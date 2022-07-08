@@ -1,4 +1,6 @@
-<template><img class="icon" :src="src" :style="computedSizes" /></template>
+<template>
+  <img class="icon" :src="src" :style="computedSizes" />
+</template>
 
 <script>
 export default {
@@ -27,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.icon{
+.icon {
   cursor: pointer;
 }
 </style>
