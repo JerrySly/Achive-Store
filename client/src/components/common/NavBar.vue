@@ -9,7 +9,7 @@
         ></router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'Achivments' }"
+        <router-link :to="{ name: 'Achieves' }"
           ><icon-achives></icon-achives
         ></router-link>
       </li>

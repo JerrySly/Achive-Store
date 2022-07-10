@@ -1,12 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 $main-color: rgb(38, 172, 33);
+$main-hover-color: rgb(26, 121, 23);
 $main-font: "Lato", sans-serif;
 $shadow-color: rgba(185, 36, 36, 0.384);
 $additional-color: rgb(185, 36, 36);
 $font-color: rgb(82, 77, 77);
-
+$alert-color: rgb(170, 96, 96);
 body{
   font-family: $main-font;
+
+  .btn-without-background{
+    background-color: #fff;
+    color: $main-color !important;
+  }
+  .btn-without-background:hover{
+    background-color: #fff !important;
+    color: $main-hover-color;
+  }
+  button{
+    background-color: $main-color;
+  }
+  button:hover{
+    background-color: $main-hover-color;
+  }
+  
 }
 
 .card {
@@ -17,6 +34,7 @@ body{
   color: $font-color;
   font-family: $main-font;
 }
+
 
 
 

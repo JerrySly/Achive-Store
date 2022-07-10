@@ -36,7 +36,6 @@ export default {
   setup(props) {
     let computedStyle = {
       color: props.color,
-      backgroundColor: props.backgroundColor,
       width: props.width,
       height: props.height,
       fontSize: props.fontSize+'px',
@@ -55,7 +54,5 @@ button{
     outline: none;
     border: none;
 }
-button:hover{
-  background-color: rgb(33, 151, 29) !important;
-}
+
 </style>

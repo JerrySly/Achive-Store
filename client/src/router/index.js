@@ -7,14 +7,24 @@ const routes = [
     component: () => import('@/views/User.vue')
   },
   {
-    path:'/achivments',
-    name:'Achivments',
-    component: ()=>import('@/views/Achivments.vue')
+    path:'/achieves',
+    name:'Achieves',
+    component: ()=>import('@/views/Achieves.vue')
   },
   {
     path:'/messages',
     name:'Messages',
     component: ()=>import('@/views/Messages.vue')
+  },
+  {
+    path:'/',
+    name:'Authorization',
+    component: ()=>import('@/views/Authorization.vue')
+  },
+  {
+    path:'/registration',
+    name:'Registration',
+    component: ()=>import('@/views/Registration.vue')
   }
 
 ]
