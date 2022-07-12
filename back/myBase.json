@@ -1,0 +1,20 @@
+{
+    "users": {
+        "1b070660-52b0-402a-a340-04c521be7ed1": {
+            "id": "1b070660-52b0-402a-a340-04c521be7ed1",
+            "name": "Eugene",
+            "surname": "Yanzeev",
+            "email": "jekasyper007@yandex.ru",
+            "hashPassword": "$argon2id$v=19$m=4096,t=3,p=1$vau1BuGuI/7wWlir+l8fpQ$Ufq+NzGw43n5VFzSOpOgGA0CzmP4qMSFgxdhERDcLjg",
+            "photo": null
+        },
+        "c463fbdb-b611-448f-8adb-ac678820e6f9": {
+            "id": "c463fbdb-b611-448f-8adb-ac678820e6f9",
+            "name": "Eugene",
+            "surname": "Yanzeev",
+            "email": "jekasyper008@yandex.ru",
+            "hashPassword": "$argon2id$v=19$m=4096,t=3,p=1$WaJkTP8IzRAzD3bSNKAldg$7txgNv34PubOSylcekmIqj89sRa44ha0Fasec6zz/Ts",
+            "photo": null
+        }
+    }
+}

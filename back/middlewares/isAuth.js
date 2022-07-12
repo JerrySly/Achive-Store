@@ -1,0 +1,14 @@
+const expressJwt = require('express-jwt')
+
+
+const getTokenFormHeader = (req) =>{
+    if(req.headers.authorization && req.headers.authorization.split(' ')[0] ==='Bearer'){
+        return req.headers.authorization.split(' ')[1];
+    }
+}
+
+module.exports = expressJwt({
+    secret:'vHTu634_I3kr3Z',
+    userProperty: 'token',
+    getToken: getTokenFormHeader
+})

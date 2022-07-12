@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "module": "common",
   "scripts": {
     "serve": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "argon2": "^0.28.7",
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "express-jwt": "^7.7.5",
+    "jsonwebtoken": "^8.5.1",
+    "node-json-db": "^1.6.0",
+    "uuid": "^8.3.2"
   }
 }
