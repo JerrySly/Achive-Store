@@ -11,7 +11,7 @@ class AuthService {
       dbService.add("users", user);
 
       let token = this._generateToken(user);
-
+      
       return {
         user: {
           email,

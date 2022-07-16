@@ -33,7 +33,7 @@ export default {
     },
     borderRadius:{
       type: String,
-      default: '8px'
+      default: '5px'
     },
     placeholder:{
       type:String,

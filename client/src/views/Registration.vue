@@ -30,7 +30,7 @@
         <base-button :height="'40px'" :width="'140px'">{{
           "< Назад"
         }}</base-button>
-        <base-button :height="'40px'" :width="'140px'">Сохранить</base-button>
+        <base-button @click="singUp" :height="'40px'" :width="'140px'">Сохранить</base-button>
       </div>
     </div>
   </div>
@@ -39,19 +39,25 @@
 <script>
 import { reactive, ref } from "@vue/reactivity";
 import baseAlertMessage from "../components/base/baseAlertMessage.vue";
+import {useStore} from "vuex";
 export default {
   components: { baseAlertMessage },
-  setup() {
+  setup(props,context) {
     let model = reactive({
       email: "",
       password: "",
       repeatPassword: "",
     });
+    const store =  useStore();
     let alertText = ref(`Заполните все поля на форме`);
-
+    const singUp = async () =>{
+      const result = await store.dispatch('auth/login',{email:'jekasyper007@yandex.ru',password:'12345678'});
+      console.log(result);
+    }
     return {
       model,
       alertText,
+      singUp
     };
   },
 };

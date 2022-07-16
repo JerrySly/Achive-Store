@@ -24,7 +24,6 @@ class DataBaseService{
     getByField(tableName,fieldName,value){
         console.log('Db');
         let table = db.getData(`/${tableName}`)
-        console.log(table)
         let resultArray = [];
         for(let entityId in table){
             if(table[entityId][fieldName] === value)
