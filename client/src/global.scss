@@ -24,6 +24,11 @@ body{
     background-color: $main-hover-color;
   }
   
+  .error-message{
+    color:$additional-color;
+    font-family: $main-font;
+    font-size: 20px;
+  }
 }
 
 .card {
