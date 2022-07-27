@@ -54,6 +54,8 @@ import baseAlertMessage from "../components/base/baseAlertMessage.vue";
 import { useStore } from "vuex";
 import { useField } from "vee-validate";
 import * as yup from "yup";
+import { computed } from '@vue/runtime-core';
+import {shake} from "@/helpers/ui-methods.js";
 export default {
   components: { baseAlertMessage },
   setup(props, context) {
@@ -64,11 +66,32 @@ export default {
     });
     const errorsMessages = reactive({});
     const store = useStore();
+    const hasError = computed(()=>{
+      for(let prop in errorsMessages){
+        let value = errorsMessages[prop] 
+        console.log(value)
+        if(value != null && value != undefined && value!="")
+          return true  
+      }
+      return false;
+    })
+    
     const singUp = async () => {
-      const result = await store.dispatch("auth/login", {
-        email: "jekasyper007@yandex.ru",
-        password: "12345678",
-      });
+      let card = document.getElementsByClassName('card')[0]
+       console.log(errorsMessages);
+      console.log(hasError.value);
+      if(hasError.value){
+        shake(card);
+        return
+      }
+      if(model.password !== model.repeatPassword){
+        console.log(errorsMessages);
+        // errorsMessages['repeatPassword'] = "This field is different from the password"
+        shake(card);
+        return
+      }
+      store.dispatch('signUp',{})
+      
     };
     function setField(name, yupRule) {
       let { value, errorMessage } = useField(name, yupRule);
@@ -78,7 +101,7 @@ export default {
 
     setField("email", yup.string().required().email());
     setField("password", yup.string().required().min(8));
-    setField("repeatPassword", yup.string().required().min(8));
+    setField("repeatPassword", yup.string().oneOf([yup.ref('password'),null],'Passwords must match').required().min(8));
     return {
       model,
       singUp,
@@ -126,5 +149,7 @@ export default {
       justify-content: space-around;
     }
   }
+  
 }
+
 </style>

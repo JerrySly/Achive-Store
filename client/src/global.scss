@@ -39,6 +39,17 @@ body{
   color: $font-color;
   font-family: $main-font;
 }
+.shake{
+  animation: shaking 0.5s ;
+}
+@keyframes shaking {
+  25%{
+    transform: translateX(-10px);
+  }
+  75%{
+     transform: translateX(10px);
+  }
+}
 
 
 
