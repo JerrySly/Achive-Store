@@ -5,7 +5,6 @@ import store from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import { lowerFirst } from 'lodash'
-import { ValidationProvider } from 'vee-validate';
 const Vue = createApp(App)
 
 
@@ -61,5 +60,4 @@ icons.keys().forEach(fileName => {
     componentConfig.default || componentConfig
   )
 })
-Vue.component('ValidateBlock',ValidationProvider);
 Vue.use(store).use(router).mount('#app')

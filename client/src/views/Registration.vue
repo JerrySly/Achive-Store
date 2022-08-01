@@ -6,8 +6,8 @@
       <div class="form">
         <div class="form-item">
           <base-input :placeholder="'Email'" v-model="model.email"></base-input>
-          <div v-if="errorsMessages.email" class="error-message">
-            {{ errorsMessages.email }}
+          <div v-if="errors.email" class="error-message">
+            {{ errors.email }}
           </div>
         </div>
 
@@ -17,8 +17,8 @@
             v-model="model.password"
             :type="'password'"
           ></base-input>
-          <div v-if="errorsMessages.password" class="error-message">
-            {{ errorsMessages.password }}
+          <div v-if="errors.password" class="error-message">
+            {{ errors.password }}
           </div>
         </div>
 
@@ -28,8 +28,8 @@
             v-model="model.repeatPassword"
             :type="'password'"
           ></base-input>
-          <div v-if="errorsMessages.repeatPassword" class="error-message">
-            {{ errorsMessages.repeatPassword }}
+          <div v-if="errors.repeatPassword" class="error-message">
+            {{ errors.repeatPassword }}
           </div>
         </div>
       </div>
@@ -50,63 +50,24 @@
 
 <script>
 import { reactive, ref } from "@vue/reactivity";
-import baseAlertMessage from "../components/base/baseAlertMessage.vue";
 import { useStore } from "vuex";
-import { useField } from "vee-validate";
 import * as yup from "yup";
+import {shake} from "@/helpers/animation-methods.js";
+import { useForm } from 'vee-validate';
 import { computed } from '@vue/runtime-core';
-import {shake} from "@/helpers/ui-methods.js";
 export default {
-  components: { baseAlertMessage },
   setup(props, context) {
-    let model = reactive({
-      email: "",
-      password: "",
-      repeatPassword: "",
-    });
-    const errorsMessages = reactive({});
+    let model = computed(() => { return yup.object({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8),
+      repeatPassword: yup.string().required().oneOf([yup.ref('password'),null],'Passwords must match'),
+    })});
     const store = useStore();
-    const hasError = computed(()=>{
-      for(let prop in errorsMessages){
-        let value = errorsMessages[prop] 
-        console.log(value)
-        if(value != null && value != undefined && value!="")
-          return true  
-      }
-      return false;
-    })
     
-    const singUp = async () => {
-      let card = document.getElementsByClassName('card')[0]
-       console.log(errorsMessages);
-      console.log(hasError.value);
-      if(hasError.value){
-        shake(card);
-        return
-      }
-      if(model.password !== model.repeatPassword){
-        console.log(errorsMessages);
-        // errorsMessages['repeatPassword'] = "This field is different from the password"
-        shake(card);
-        return
-      }
-      store.dispatch('signUp',{})
-      
-    };
-    function setField(name, yupRule) {
-      let { value, errorMessage } = useField(name, yupRule);
-      model[name] = value;
-      errorsMessages[name] = errorMessage;
-    }
-
-    setField("email", yup.string().required().email());
-    setField("password", yup.string().required().min(8));
-    setField("repeatPassword", yup.string().oneOf([yup.ref('password'),null],'Passwords must match').required().min(8));
-    return {
+    return{
       model,
-      singUp,
-      errorsMessages,
-    };
+      errors
+    }
   },
 };
 </script>

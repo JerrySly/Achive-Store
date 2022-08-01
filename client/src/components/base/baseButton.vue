@@ -31,7 +31,7 @@ export default {
     borderRadius:{
         type: String,
         default: '5px'
-    }
+    },
   },
   setup(props) {
     let computedStyle = {

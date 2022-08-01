@@ -2,26 +2,18 @@
   <div class="wrapper">
     <div class="card">
       <div class="title">Авторизация</div>
-      <div class="form">
-        <div class="form-item">
-          <base-input :placeholder="'Email'" v-model="model.email"></base-input>
-          <div v-if="errorsMessages.email" class="error-message">
-            {{ errorsMessages.email }}
+      <Form  :validation-schema="scheme">
+        <div class="form">
+          <div class="form-item">
+            <base-validating-field :label="'Email'" name="email" :placeholder="'Your email'" :successMessage="'Correct email'" type="email"></base-validating-field>
+          </div>
+          <div class="form-item">
+             <base-validating-field :label="'Password'" name="password" :placeholder="'Your password'" :successMessage="'Correct password'" type="password"></base-validating-field>
           </div>
         </div>
-        <div class="form-item">
-          <base-input
-            :placeholder="'Password'"
-            v-model="model.password"
-            :type="'password'"
-          ></base-input>
-          <div v-if="errorsMessages.password" class="error-message">
-            {{ errorsMessages.password }}
-          </div>
-        </div>
-      </div>
+      </Form>
       <div class="actions">
-        <base-button :height="'40px'" :width="'140px'">Вход</base-button>
+        <base-button :height="'40px'" :width="'140px'"  @click="entry">Вход</base-button>
         <router-link :to="{ name: 'Registration' }">
           <base-button
             class="btn-without-background"
@@ -31,6 +23,7 @@
           >
         </router-link>
       </div>
+      
     </div>
   </div>
 </template>
@@ -39,26 +32,18 @@
 import { reactive, ref } from "@vue/reactivity";
 import baseInput from "../components/base/baseInput.vue";
 import * as yup from "yup";
-import { useField } from "vee-validate";
 import BaseButton from "../components/base/baseButton.vue";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import BaseValidatingField from '../components/base/baseValidatingField.vue';
 export default {
-  components: { baseInput, BaseButton },
+  components: { baseInput, BaseButton,Field,Form,ErrorMessage, BaseValidatingField },
   setup() {
-    let model = reactive({
-      email: "",
-      password: "",
-    });
-    const errorsMessages = reactive({});
-    function setField(name, yupRule) {
-      let { value, errorMessage } = useField(name, yupRule);
-      model[name] = value;
-      errorsMessages[name] = errorMessage;
-    }
-    setField("email", yup.string().required().email());
-    setField("password", yup.string().required().min(8));
+    let scheme = yup.object().shape({
+      email: yup.string().email().required(),
+      password: yup.string().min(5).required()
+    })
     return {
-      model,
-      errorsMessages,
+      scheme,
     };
   },
 };
