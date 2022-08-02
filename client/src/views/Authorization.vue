@@ -2,47 +2,78 @@
   <div class="wrapper">
     <div class="card">
       <div class="title">Авторизация</div>
-      <Form  :validation-schema="scheme">
+      <Form
+        @invalid-submit="invalidSubmit"
+        :validation-schema="scheme"
+        @submit="entry"
+      >
         <div class="form">
           <div class="form-item">
-            <base-validating-field :label="'Email'" name="email" :placeholder="'Your email'" :successMessage="'Correct email'" type="email"></base-validating-field>
+            <base-validating-field
+              :label="'Email'"
+              name="email"
+              :placeholder="'Your email'"
+              :successMessage="'Correct email'"
+              type="email"
+            ></base-validating-field>
           </div>
           <div class="form-item">
-             <base-validating-field :label="'Password'" name="password" :placeholder="'Your password'" :successMessage="'Correct password'" type="password"></base-validating-field>
+            <base-validating-field
+              :label="'Password'"
+              name="password"
+              :placeholder="'Your password'"
+              :successMessage="'Correct password'"
+              type="password"
+            ></base-validating-field>
           </div>
         </div>
-      </Form>
-      <div class="actions">
-        <base-button :height="'40px'" :width="'140px'"  @click="entry">Вход</base-button>
-        <router-link :to="{ name: 'Registration' }">
-          <base-button
-            class="btn-without-background"
-            :height="'40px'"
-            :width="'140px'"
-            >Регистрация</base-button
+        <div class="actions">
+          <base-button :height="'40px'" :width="'140px'" :type="'submit'"
+            >Вход</base-button
           >
-        </router-link>
-      </div>
-      
+          <router-link :to="{ name: 'Registration' }">
+            <base-button
+              class="btn-without-background"
+              :height="'40px'"
+              :width="'140px'"
+              >Регистрация</base-button
+            >
+          </router-link>
+        </div>
+      </Form>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref } from "@vue/reactivity";
 import baseInput from "../components/base/baseInput.vue";
 import * as yup from "yup";
 import BaseButton from "../components/base/baseButton.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import BaseValidatingField from '../components/base/baseValidatingField.vue';
+import { shake } from "@/helpers/animation-methods.js";
 export default {
-  components: { baseInput, BaseButton,Field,Form,ErrorMessage, BaseValidatingField },
+  components: {
+    baseInput,
+    BaseButton,
+    Field,
+    Form,
+    ErrorMessage
+  },
   setup() {
     let scheme = yup.object().shape({
       email: yup.string().email().required(),
-      password: yup.string().min(5).required()
-    })
+      password: yup.string().min(5).required(),
+    });
+    const entry = (values) => {
+      console.log(values);
+    };
+    const invalidSubmit = () => {
+      let card = document.getElementsByClassName("card")[0];
+      shake(card);
+    };
     return {
+      invalidSubmit,
+      entry,
       scheme,
     };
   },

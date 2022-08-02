@@ -1,5 +1,5 @@
 <template>
-  <button @click="$emit('click')" :style="computedStyle" >
+  <button @click="$emit('click')" :style="computedStyle" :type="type">
     <slot></slot>
   </button>
 </template>
@@ -32,6 +32,10 @@ export default {
         type: String,
         default: '5px'
     },
+    type:{
+      type: String,
+      default: ''
+    }
   },
   setup(props) {
     let computedStyle = {
@@ -42,6 +46,7 @@ export default {
       borderRadius: props.borderRadius
     };
     return {
+      type: props.type,
       computedStyle,
     };
   },

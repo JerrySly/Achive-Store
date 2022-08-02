@@ -2,71 +2,64 @@
   <div class="wrapper">
     <div class="card">
       <div class="title">Регистрация</div>
-
+      <Form @invalid-submit="invalidSubmit"  :validation-schema="scheme" @submit="submit">
       <div class="form">
         <div class="form-item">
-          <base-input :placeholder="'Email'" v-model="model.email"></base-input>
-          <div v-if="errors.email" class="error-message">
-            {{ errors.email }}
-          </div>
+          <base-validating-field  :label="'Email'" name="email" :placeholder="'Your email'" :successMessage="'Correct email'" type="email"></base-validating-field>
         </div>
-
         <div class="form-item">
-          <base-input
-            :placeholder="'Password'"
-            v-model="model.password"
-            :type="'password'"
-          ></base-input>
-          <div v-if="errors.password" class="error-message">
-            {{ errors.password }}
-          </div>
+          <base-validating-field  :label="'Password'" name="password" :placeholder="'Your password'" :successMessage="'Correct password'" type="password"></base-validating-field>
         </div>
-
         <div class="form-item">
-          <base-input
-            :placeholder="'Repeat password'"
-            v-model="model.repeatPassword"
-            :type="'password'"
-          ></base-input>
-          <div v-if="errors.repeatPassword" class="error-message">
-            {{ errors.repeatPassword }}
-          </div>
+          <base-validating-field  :label="'Repeat password'" name="repeatPassword" :placeholder="'Repeat your password'" :successMessage="'Correct password'" type="password"></base-validating-field>
         </div>
       </div>
-
       <div class="actions">
         <router-link :to="{name:'Authorization'}">
-        <base-button :height="'40px'" :width="'140px'">{{
-          "< Назад"
-        }}</base-button>
+          <base-button :height="'40px'" :width="'140px'">{{
+            "< Назад"
+          }}</base-button>
         </router-link>
-        <base-button @click="singUp" :height="'40px'" :width="'140px'"
+        <base-button :type="'submit'" :height="'40px'" :width="'140px'"
           >Сохранить</base-button
         >
       </div>
+      </Form>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref } from "@vue/reactivity";
 import { useStore } from "vuex";
 import * as yup from "yup";
 import {shake} from "@/helpers/animation-methods.js";
-import { useForm } from 'vee-validate';
-import { computed } from '@vue/runtime-core';
+import { Form, Field, ErrorMessage } from "vee-validate";
+
 export default {
-  setup(props, context) {
-    let model = computed(() => { return yup.object({
-      email: yup.string().required().email(),
-      password: yup.string().required().min(8),
-      repeatPassword: yup.string().required().oneOf([yup.ref('password'),null],'Passwords must match'),
-    })});
+  components:{
+    Form,
+    Field,
+    ErrorMessage
+  },
+  setup() {
+    const scheme = yup.object().shape({
+      email: yup.string().email().required(),
+      password: yup.string().min(5).required(),
+      repeatPassword: yup.string().required().oneOf([yup.ref('password')], 'Passwords do not match'),
+    })
+    const submit = (values) => {
+      console.log(values)
+    }
+    const invalidSubmit = () => {
+      let card = document.getElementsByClassName('card')[0];
+      shake(card);
+    }
     const store = useStore();
     
     return{
-      model,
-      errors
+      scheme,
+      submit,
+      invalidSubmit,
     }
   },
 };

@@ -1,7 +1,6 @@
 <template>
   <div
     class="validating-field"
-   
   >
     <div :style="labelStyle" class="label-block">
       <label :for="name">{{ label }}</label>
@@ -83,7 +82,7 @@ export default {
     errorFontSize:{
       type: String,
       default: '18px'
-    }
+    },
   },
   setup(props) {
     let style = {
@@ -110,11 +109,7 @@ export default {
     } = reactive(useField(name, undefined, {
       initialValue: props.value,
     }));
-    let common = reactive(useField(name, undefined, {
-      initialValue: props.value,
-    }));
     return {
-      common,
       style,
       value,
       errorMessage,
