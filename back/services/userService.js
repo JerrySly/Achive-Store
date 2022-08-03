@@ -7,5 +7,8 @@ class UserService{
     getUserByEmail(email){
         return  dbService.getByField('users','email',email)
     }
+    checkUserAccess(){
+        return 'Access successful';
+    }
 }
 module.exports = new UserService();

@@ -31,7 +31,7 @@
           <base-button :height="'40px'" :width="'140px'" :type="'submit'"
             >Вход</base-button
           >
-          <router-link :to="{ name: 'Registration' }">
+          <router-link :to="{ name: 'SingUp' }">
             <base-button
               class="btn-without-background"
               :height="'40px'"
@@ -47,10 +47,14 @@
 
 <script>
 import baseInput from "../components/base/baseInput.vue";
+import { useStore } from "vuex";
 import * as yup from "yup";
 import BaseButton from "../components/base/baseButton.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { shake } from "@/helpers/animation-methods.js";
+import { useRouter } from 'vue-router'
+import { computed } from '@vue/runtime-core';
+import userService from "@/services/userService.js"
 export default {
   components: {
     baseInput,
@@ -60,12 +64,23 @@ export default {
     ErrorMessage
   },
   setup() {
+    const store = useStore();
+    const router = useRouter();
+    const user = computed(()=> store.state.auth.user)
+
+    if(userService.isLogin){
+      router.push({name:'User',params:{id:user.value.id}});
+    }
+
+    
     let scheme = yup.object().shape({
       email: yup.string().email().required(),
       password: yup.string().min(5).required(),
     });
-    const entry = (values) => {
-      console.log(values);
+    
+    const entry = async (values) => {
+      await store.dispatch('auth/login', values);
+      router.push({name:'User',params:{id:user.value.id}});
     };
     const invalidSubmit = () => {
       let card = document.getElementsByClassName("card")[0];

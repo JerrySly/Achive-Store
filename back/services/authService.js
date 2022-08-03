@@ -4,7 +4,7 @@ const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const userService = require("./userService");
 class AuthService {
-  async registration(email, password, name, surname) {
+  async singUp(email, password, name, surname) {
     try {
       const hashedPassword = await argon2.hash(password);
       let user = new User(name, surname, email, hashedPassword);
@@ -35,12 +35,17 @@ class AuthService {
     return {
         user:{
             name: userRecord.name,
-            email: userRecord.email
+            email: userRecord.email,
+            id: userRecord.id,
+            surname: userRecord.surname
         },
         token: this._generateToken(userRecord)
     }
   }
 
+  // async getUserByToken(){
+
+  // },
   _generateToken(user) {
     const data = {
       _id: user.id,
@@ -48,7 +53,7 @@ class AuthService {
       email: user.email,
     };
     const devSignature = "vHTu634_I3kr3Z";
-    const expiration = "6h";
+    const expiration = "2h";
 
     return jwt.sign({ data }, devSignature, { expiresIn: expiration });
   }
