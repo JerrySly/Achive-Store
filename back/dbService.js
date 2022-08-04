@@ -15,14 +15,20 @@ class DataBaseService{
             surname:'you'
         })
     }
-    add(tableName,object){
-        db.push(`/${tableName}/${object.id}`,object)
+    put(tableName,id,object){
+        this.delete(tableName,id);
+        this.add(...arguments);
+    }
+    delete(tableName,id){
+        db.delete(`/${tableName}/${id}`)
+    }
+    add(tableName,id,object){
+        db.push(`/${tableName}/${id}`,object)
     }
     get(tableName,id){
         return db.getData(`/${tableName}/${id}`)
     }
     getByField(tableName,fieldName,value){
-        console.log('Db');
         let table = db.getData(`/${tableName}`)
         let resultArray = [];
         for(let entityId in table){

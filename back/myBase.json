@@ -8,5 +8,11 @@
             "hashPassword": "$argon2id$v=19$m=4096,t=3,p=1$uSE2AVjSNndyu9UPyoBQ1A$fLSTdOWyA/7A743OtyYfV7pvSqQDWmpW5a1H7gQs4w4",
             "photo": null
         }
+    },
+    "refreshTokens": {
+        "7a209704-03fe-438f-8721-0db888f3b823": {
+            "userId": "7a209704-03fe-438f-8721-0db888f3b823",
+            "refreshToken": "6b6e77d2-6c57-44cb-94bf-4f1a9d6d1f91"
+        }
     }
 }
