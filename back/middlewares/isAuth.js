@@ -1,6 +1,5 @@
 const {expressjwt} = require('express-jwt')
 
-console.log(expressjwt);
 
 const getTokenFormHeader = (req) =>{
     if(req.headers.authorization && req.headers.authorization.split(' ')[0] ==='Bearer'){

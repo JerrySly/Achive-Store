@@ -5,7 +5,10 @@ import store from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import { lowerFirst } from 'lodash'
+import axios from 'axios'
 const Vue = createApp(App)
+
+axios.defaults.baseURL = 'http://localhost:5000';
 
 
 function addRequiredComponent(context){

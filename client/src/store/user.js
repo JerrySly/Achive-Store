@@ -1,18 +1,16 @@
 import userService from "@/services/userService";
-export const auth = {
+export const user = {
   namespaced: true,
   state: {
-    user: null
+    user: null,
+    token: localStorage.getItem('token')
   },
   mutations:{
-    setUser(state,user){
-        state.user =  user;
+    setUser(state,value){
+      state.user = value
     }
   },
   actions: {
-    async getUser({commit}){
-        commit('setUser',user);
-    },
     async singUp({ commit }, userInfo) {
         await userService.registration(userInfo);
     },
@@ -20,5 +18,9 @@ export const auth = {
         const result = await userService.login(email, password);
         commit('setUser',result.user);
     },
+    async getCurrentUser({commit}){
+      const result = await userService.getCurrentUser();
+      commit('setUser',result);
+    }
   },
 };

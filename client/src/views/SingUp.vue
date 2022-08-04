@@ -59,7 +59,7 @@ export default {
       repeatPassword: yup.string().required().oneOf([yup.ref('password')], 'Passwords do not match'),
     })
     const submit = async (values) => {
-      await store.dispatch('auth/singUp', values);
+      await store.dispatch('user/singUp', values);
       router.push({name:'Authorization'});
     }
     const invalidSubmit = () => {

@@ -17,7 +17,6 @@ export default {
   },
   setup(props){
     let post = reactive(props.post)
-    console.log(post);
     let readableDateTime = computed(()=>{
       return new Date(post.time).toLocaleDateString()
     })

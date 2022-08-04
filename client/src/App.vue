@@ -9,10 +9,21 @@
 
 <script>
 import NavBar from "@/components/common/NavBar.vue";
+import { useStore } from 'vuex';
+import { computed } from '@vue/runtime-core';
+import userService from "@/services/userService.js";
 export default {
   components: {
     NavBar,
   },
+  setup(){
+    const store = useStore();
+    const token = computed(()=>store.state.user.token)
+    if(token.value){
+      userService.setAuthorizationHeader(token.value);
+    }
+    store.dispatch('user/getCurrentUser');
+  }
 };
 </script>
 <style>

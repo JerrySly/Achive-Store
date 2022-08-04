@@ -54,7 +54,6 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import { shake } from "@/helpers/animation-methods.js";
 import { useRouter } from 'vue-router'
 import { computed } from '@vue/runtime-core';
-import userService from "@/services/userService.js"
 export default {
   components: {
     baseInput,
@@ -66,9 +65,8 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
-    const user = computed(()=> store.state.auth.user)
-
-    if(userService.isLogin){
+    const user = computed(()=> store.state.user.user)
+    if(user.value){
       router.push({name:'User',params:{id:user.value.id}});
     }
 
@@ -79,7 +77,7 @@ export default {
     });
     
     const entry = async (values) => {
-      await store.dispatch('auth/login', values);
+      await store.dispatch('user/login', values);
       router.push({name:'User',params:{id:user.value.id}});
     };
     const invalidSubmit = () => {
