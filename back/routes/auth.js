@@ -34,6 +34,7 @@ module.exports = (app) => {
   app.post("/refresh", async (req,res) =>{
     
     let {refreshToken} = req.body;
+    console.log(refreshToken);
     try{
     const result = await authService.refreshToken(refreshToken);
     res.status(200).json(result);

@@ -6,8 +6,7 @@ class UserService{
     }
     async login(email,password){
         const result = (await axios.post('/login', {email,password})).data
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('refreshToken', result.refreshToken);
+        this._setTokenInfo(result)
         this.setAuthorizationHeader(result.token)
         return result;
     }
@@ -19,13 +18,21 @@ class UserService{
     }
     async getCurrentUser(){
         const user =  (await axios.get('/user/0')).data
-        console.log(user);
-        return user;
+        return {id,name,surname,email,photo} = user;
     }
     setAuthorizationHeader(token){
-        console.log('Token',token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
+    async refreshToken(){
+        const preRefreshToken = localStorage.getItem('refreshToken');
+        const result = (await axios.post(`/refresh`,{refreshToken:preRefreshToken})).data;
+        this._setTokenInfo(result)
+        
+    }
+    _setTokenInfo({token,refreshToken}){
+        localStorage.setItem('token', token);
+        localStorage.setItem('refreshToken', refreshToken);
+    }   
 }
 
 export default new UserService();

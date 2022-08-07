@@ -31,7 +31,6 @@ export default {
   setup(props){
     const store = useStore();
     const currentUser = computed(()=>store.state)
-    // props.id == 
   }
 };
 </script>
