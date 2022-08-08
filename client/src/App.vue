@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar></nav-bar>
+    <nav-bar />
     <div class="main-wrapper">
       <router-view />
     </div>
@@ -8,23 +8,23 @@
 </template>
 
 <script>
-import NavBar from "@/components/common/NavBar.vue";
-import { useStore } from 'vuex';
-import { computed } from '@vue/runtime-core';
-import userService from "@/services/userService.js";
+import NavBar from '@/components/common/NavBar.vue'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+import userService from '@/services/userService.js'
 export default {
   components: {
-    NavBar,
+    NavBar
   },
-  setup(){
-    const store = useStore();
-    const token = computed(()=>store.state.user.token)
-    if(token.value){
-      userService.setAuthorizationHeader(token.value);
+  setup () {
+    const store = useStore()
+    const token = computed(() => store.state.user.token)
+    if (token.value) {
+      userService.setAuthorizationHeader(token.value)
     }
-    store.dispatch('user/getCurrentUser');
+    store.dispatch('user/getCurrentUser')
   }
-};
+}
 </script>
 <style>
 .main-wrapper{
@@ -37,7 +37,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
- 
+
 }
 body{
    background-color: #fddddd59;

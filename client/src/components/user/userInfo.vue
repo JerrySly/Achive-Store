@@ -1,10 +1,18 @@
 <template>
   <div class="card">
-    <div class="title">Информация</div>
+    <div class="title">
+      Информация
+    </div>
     <div>
-      <div class="item" v-for="(item, index) in information" :key="index">
+      <div
+        v-for="(item, index) in information"
+        :key="index"
+        class="item"
+      >
         <div>{{ `${item.label}:` }}</div>
-        <div @click="externalRoute(item)">{{ item.value }}</div>
+        <div @click="externalRoute(item)">
+          {{ item.value }}
+        </div>
       </div>
     </div>
   </div>
@@ -12,31 +20,31 @@
 
 <script>
 export default {
-  setup() {
-    let externalRoute = function (item) {
-      if (!item.href) return;
-      let el = document.createElement("a");
-      el.href = item.value;
-      el.target = "blank";
-      el.click();
-    };
+  setup () {
+    const externalRoute = function (item) {
+      if (!item.href) return
+      const el = document.createElement('a')
+      el.href = item.value
+      el.target = 'blank'
+      el.click()
+    }
     return {
       externalRoute,
       information: [
         {
-          label: "Ссылка на гитхаб",
-          value: "https://github.com/JerrySly",
-          href: true,
+          label: 'Ссылка на гитхаб',
+          value: 'https://github.com/JerrySly',
+          href: true
         },
         {
-          label: "Ссылка на ВК",
-          value: "https://vk.com/jerrysly",
-          href: true,
-        },
-      ],
-    };
-  },
-};
+          label: 'Ссылка на ВК',
+          value: 'https://vk.com/jerrysly',
+          href: true
+        }
+      ]
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

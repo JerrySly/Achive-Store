@@ -1,11 +1,14 @@
 <template>
-  <div class="alert" :style="style">
+  <div
+    class="alert"
+    :style="style"
+  >
     <div style="flex:2">
-      <icon-alert-symbol :color="'#fff'"></icon-alert-symbol>
+      <icon-alert-symbol :color="'#fff'" />
     </div>
-    <div style="flex:1"></div>
+    <div style="flex:1" />
     <div class="block">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
@@ -15,24 +18,24 @@ export default {
   props: {
     width: {
       type: String,
-      default: "none",
+      default: 'none'
     },
 
     height: {
       type: String,
-      default: "100%",
-    },
+      default: '100%'
+    }
   },
-  setup(props) {
-    let style = {
+  setup (props) {
+    const style = {
       width: props.width,
-      height: props.height,
-    };
+      height: props.height
+    }
     return {
-      style,
-    };
-  },
-};
+      style
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

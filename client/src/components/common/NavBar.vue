@@ -1,35 +1,37 @@
 <template>
   <div class="wrapper">
     <ul>
-      <li class="spacer"></li>
-      <li class="logo">Achive Store</li>
-      <li>
-        <router-link :to="{ name: 'User', params: { id: 1 } }"
-          ><icon-home></icon-home
-        ></router-link>
+      <li class="spacer" />
+      <li class="logo">
+        Achive Store
       </li>
       <li>
-        <router-link :to="{ name: 'Achieves' }"
-          ><icon-achives></icon-achives
-        ></router-link>
+        <router-link :to="{ name: 'User', params: { id: 1 } }">
+          <icon-home />
+        </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'Messages' }"
-          ><icon-message></icon-message
-        ></router-link>
+        <router-link :to="{ name: 'Achieves' }">
+          <icon-achives />
+        </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'Messages' }"
-          ><icon-cog></icon-cog
-        ></router-link>
+        <router-link :to="{ name: 'Messages' }">
+          <icon-message />
+        </router-link>
       </li>
-      <li class="spacer"></li>
+      <li>
+        <router-link :to="{ name: 'Messages' }">
+          <icon-cog />
+        </router-link>
+      </li>
+      <li class="spacer" />
     </ul>
   </div>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss" scoped>
 .wrapper {

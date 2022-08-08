@@ -1,26 +1,31 @@
 <template>
   <div class="card">
-    <div class="title">Достижения пользователя</div>
+    <div class="title">
+      Достижения пользователя
+    </div>
     <div class="achieves-list">
-        <div v-for="(achieve,index) in achieveList" :key="index">
-            <base-achieve :src="achieve.src"></base-achieve>
-        </div>
+      <div
+        v-for="(achieve,index) in achieveList"
+        :key="index"
+      >
+        <base-achieve :src="achieve.src" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import BaseAchieve from '../base/baseAchieve.vue'
-import {achieveList} from "@/data/achieves.js"
+import { achieveList } from '@/data/achieves.js'
 export default {
-    components:{
-        BaseAchieve
-    },
-    setup(){
-        return{
-          achieveList
-        }
+  components: {
+    BaseAchieve
+  },
+  setup () {
+    return {
+      achieveList
     }
+  }
 }
 </script>
 

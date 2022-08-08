@@ -1,62 +1,67 @@
 <template>
-  <input :style="style" :type="type" :placeholder="placeholder" v-model="value" />
+  <input
+    v-model="value"
+    :style="style"
+    :type="type"
+    :placeholder="placeholder"
+  >
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
+import { ref } from 'vue'
 export default {
   props: {
     model: {
       type: String,
-      required: true,
+      required: true
     },
-    type:{
-        type: String,
-        default: 'text'
+    type: {
+      type: String,
+      default: 'text'
     },
-    width:{
+    width: {
       type: String,
       default: '100%'
     },
-    
-    height:{
+
+    height: {
       type: String,
       default: '30px'
     },
-    outline:{
+    outline: {
       type: String,
       default: 'none'
     },
-    fontSize:{
+    fontSize: {
       type: String,
       default: '20px'
     },
-    borderRadius:{
+    borderRadius: {
       type: String,
       default: '5px'
     },
-    placeholder:{
-      type:String,
+    placeholder: {
+      type: String,
       default: ''
     }
   },
-  setup(props) {
-    let value = ref(props.model);
-    let style = {
-      width:props.width,
+  setup (props) {
+    const value = ref(props.model)
+    const style = {
+      width: props.width,
       height: props.height,
       outline: props.outline,
       'font-size': props.fontSize,
-      'border-radius': props.borderRadius,
-    } 
-    return {
-        style,
-        value,
-        type: props.type,
-        placeholder: props.placeholder
+      'border-radius': props.borderRadius
     }
-  },
-};
+    return {
+      style,
+      value,
+      type: props.type,
+      placeholder: props.placeholder
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

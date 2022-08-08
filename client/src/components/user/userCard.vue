@@ -1,50 +1,62 @@
 <template>
   <div class="card">
-    <user-profile-avatar :user="user"></user-profile-avatar>
-    <div class="name">{{ `${user.name} ${user.surname}` }}</div>
+    <user-profile-avatar :user="user" />
+    <div class="name">
+      {{ `${user.name} ${user.surname}` }}
+    </div>
     <div class="counts">
-      <div style="margin-right: 10px" class="name">
+      <div
+        style="margin-right: 10px"
+        class="name"
+      >
         <span>{{ user.friendsCount }}</span>
         <span style="margin-left: 10px">друзей</span>
       </div>
       <div class="name">
-        <span>{{ user.checkCount }}</span
-        ><span style="margin-left: 10px">проверок</span>
+        <span>{{ user.checkCount }}</span><span style="margin-left: 10px">проверок</span>
       </div>
     </div>
     <div class="online-info">
-      <div class="point"></div>
+      <div class="point" />
       <span>Онлайн</span>
     </div>
     <div class="action-block">
       <div style="margin-bottom: 10px">
-        <base-button width="300px" height="40px"
-          >Поделиться профилем</base-button
+        <base-button
+          width="300px"
+          height="40px"
         >
+          Поделиться профилем
+        </base-button>
       </div>
       <div>
-        <base-button width="300px" height="40px">Настройки профиля</base-button>
+        <base-button
+          width="300px"
+          height="40px"
+        >
+          Настройки профиля
+        </base-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { user } from "@/data/user.js";
-import UserProfileAvatar from './userProfileAvatar.vue';
+import { user } from '@/data/user.js'
+import UserProfileAvatar from './userProfileAvatar.vue'
 export default {
-  components: {  UserProfileAvatar },
+  components: { UserProfileAvatar },
   props: {
     id: {
-      type: String,
-    },
+      type: String
+    }
   },
-  setup(props) {
+  setup (props) {
     return {
-      user,
-    };
-  },
-};
+      user
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -56,7 +68,7 @@ export default {
   padding: 20px 15px 10px;
   background-color: #fff;
   color: $font-color;
- 
+
   .name {
     margin-top: 8px;
     font-size: 24px;

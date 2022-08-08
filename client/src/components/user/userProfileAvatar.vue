@@ -1,6 +1,9 @@
 <template>
   <div>
-    <img :src="user.avatar" alt="" />
+    <img
+      :src="user.avatar"
+      alt=""
+    >
   </div>
 </template>
 
@@ -9,15 +12,15 @@ export default {
   props: {
     user: {
       type: Object,
-      required: true,
-    },
-  },
-  setup(props) {
-    return{
-        user: props.user
+      required: true
     }
   },
-};
+  setup (props) {
+    return {
+      user: props.user
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

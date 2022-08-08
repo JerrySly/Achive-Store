@@ -2,113 +2,120 @@
   <div
     class="validating-field"
   >
-    <div :style="labelStyle" class="label-block">
+    <div
+      :style="labelStyle"
+      class="label-block"
+    >
       <label :for="name">{{ label }}</label>
     </div>
     <input
-      :name="name"
       :id="name"
+      :name="name"
       :type="type"
       :value="value"
       :placeholder="placeholder"
-      @input="handleChange"
       :style="style"
       :class="{ 'has-error': !!errorMessage}"
-    />
+      @input="handleChange"
+    >
 
-    <p class="help-message" :style="errorStyle" v-show="errorMessage">
-      {{ errorMessage}}
+    <p
+      v-show="errorMessage"
+      class="help-message"
+      :style="errorStyle"
+    >
+      {{ errorMessage }}
     </p>
   </div>
 </template>
 
 <script>
-import { useField } from "vee-validate";
-import { reactive, ref, toRef } from "@vue/reactivity";
+import { useField } from 'vee-validate'
+import { reactive, ref, toRef } from 'vue'
 export default {
   props: {
     type: {
       type: String,
-      default: "text",
+      default: 'text'
     },
     value: {
       type: String,
-      default: "",
+      default: ''
     },
     name: {
       type: String,
-      required: true,
+      required: true
     },
     label: {
       type: String,
-      required: true,
+      required: true
     },
     successMessage: {
       type: String,
-      default: "",
+      default: ''
     },
     placeholder: {
       type: String,
-      default: "",
+      default: ''
     },
     width: {
       type: String,
-      default: "100%",
+      default: '100%'
     },
     height: {
       type: String,
-      default: "30px",
+      default: '30px'
     },
     outline: {
       type: String,
-      default: "none",
+      default: 'none'
     },
     fontSize: {
       type: String,
-      default: "20px",
+      default: '20px'
     },
     borderRadius: {
       type: String,
-      default: "5px",
+      default: '5px'
     },
-    labelPosition:{
+    labelPosition: {
       type: String,
       default: 'left'
     },
-    labelFontSize:{
+    labelFontSize: {
       type: String,
       default: '20px'
     },
-    errorFontSize:{
+    errorFontSize: {
       type: String,
       default: '18px'
-    },
+    }
   },
-  setup(props) {
-    let style = {
+  setup (props) {
+    const style = {
       width: props.width,
       height: props.height,
       outline: props.outline,
-      "font-size": props.fontSize,
-      "border-radius": props.borderRadius,
-    };
-    let labelStyle ={
-      "text-align": props.labelPosition,
-      "font-size": props.labelFontSize
+      'font-size': props.fontSize,
+      'border-radius': props.borderRadius
     }
-    let errorStyle={
-      "font-size": props.errorFontSize
+    const labelStyle = {
+      'text-align': props.labelPosition,
+      'font-size': props.labelFontSize
+    }
+    const errorStyle = {
+      'font-size': props.errorFontSize
 
     }
-    const name =toRef(props, 'name');
+    const name = toRef(props, 'name')
     const {
       value,
       errorMessage,
       meta,
       handleChange
     } = reactive(useField(name, undefined, {
-      initialValue: props.value,
-    }));
+      initialValue: props.value
+    }))
     return {
       style,
       value,
@@ -117,12 +124,12 @@ export default {
       labelStyle,
       handleChange,
       errorStyle
-    };
-  },
-};
+    }
+  }
+}
 </script>
 
-<style scoped lang="scss" >
+<style scoped lang="scss">
 .validating-field {
   position: relative;
   width: 100%;

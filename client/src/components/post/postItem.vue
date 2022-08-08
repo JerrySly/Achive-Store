@@ -1,23 +1,27 @@
 <template>
   <div class="post">
-    <div class="date-time">{{readableDateTime}}</div>
-    <div class="text">{{post.text}}</div>
+    <div class="date-time">
+      {{ readableDateTime }}
+    </div>
+    <div class="text">
+      {{ post.text }}
+    </div>
   </div>
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity';
-import { computed } from '@vue/runtime-core';
+import { reactive, computed } from 'vue'
+
 export default {
-  props:{
+  props: {
     post: {
       type: Object,
       required: true
     }
   },
-  setup(props){
-    let post = reactive(props.post)
-    let readableDateTime = computed(()=>{
+  setup (props) {
+    const post = reactive(props.post)
+    const readableDateTime = computed(() => {
       return new Date(post.time).toLocaleDateString()
     })
     return {

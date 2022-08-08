@@ -1,5 +1,10 @@
 <template>
-  <svg :width="width" :height="height" enable-background="new 0 0 64 64" viewBox="0 0 64 64">
+  <svg
+    :width="width"
+    :height="height"
+    enable-background="new 0 0 64 64"
+    viewBox="0 0 64 64"
+  >
     <g>
       <path
         :fill="color"
@@ -24,20 +29,20 @@
 <script>
 export default {
   props: {
-    width:{
+    width: {
       type: Number,
       default: 64
     },
-    height:{
+    height: {
       type: Number,
       default: 64
     },
     color: {
       type: String,
-      default: "#FFF",
-    },
-  },
-};
+      default: '#FFF'
+    }
+  }
+}
 </script>
 
 <style>

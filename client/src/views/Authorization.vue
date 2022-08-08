@@ -1,10 +1,12 @@
 <template>
   <div class="wrapper">
     <div class="card">
-      <div class="title">Авторизация</div>
+      <div class="title">
+        Авторизация
+      </div>
       <Form
-        @invalid-submit="invalidSubmit"
         :validation-schema="scheme"
+        @invalid-submit="invalidSubmit"
         @submit="entry"
       >
         <div class="form">
@@ -13,31 +15,36 @@
               :label="'Email'"
               name="email"
               :placeholder="'Your email'"
-              :successMessage="'Correct email'"
+              :success-message="'Correct email'"
               type="email"
-            ></base-validating-field>
+            />
           </div>
           <div class="form-item">
             <base-validating-field
               :label="'Password'"
               name="password"
               :placeholder="'Your password'"
-              :successMessage="'Correct password'"
+              :success-message="'Correct password'"
               type="password"
-            ></base-validating-field>
+            />
           </div>
         </div>
         <div class="actions">
-          <base-button :height="'40px'" :width="'140px'" :type="'submit'"
-            >Вход</base-button
+          <base-button
+            :height="'40px'"
+            :width="'140px'"
+            :type="'submit'"
           >
+            Вход
+          </base-button>
           <router-link :to="{ name: 'SingUp' }">
             <base-button
               class="btn-without-background"
               :height="'40px'"
               :width="'140px'"
-              >Регистрация</base-button
             >
+              Регистрация
+            </base-button>
           </router-link>
         </div>
       </Form>
@@ -46,14 +53,14 @@
 </template>
 
 <script>
-import baseInput from "../components/base/baseInput.vue";
-import { useStore } from "vuex";
-import * as yup from "yup";
-import BaseButton from "../components/base/baseButton.vue";
-import { Form, Field, ErrorMessage } from "vee-validate";
-import { shake } from "@/helpers/animation-methods.js";
+import baseInput from '../components/base/baseInput.vue'
+import { useStore } from 'vuex'
+import * as yup from 'yup'
+import BaseButton from '../components/base/baseButton.vue'
+import { Form, Field, ErrorMessage } from 'vee-validate'
+import { shake } from '@/helpers/animation-methods.js'
 import { useRouter } from 'vue-router'
-import { computed } from '@vue/runtime-core';
+import { computed } from 'vue'
 export default {
   components: {
     baseInput,
@@ -62,35 +69,34 @@ export default {
     Form,
     ErrorMessage
   },
-  setup() {
-    const store = useStore();
-    const router = useRouter();
-    const user = computed(()=> store.state.user.user)
-    if(user.value){
-      router.push({name:'User',params:{id:user.value.id}});
+  setup () {
+    const store = useStore()
+    const router = useRouter()
+    const user = computed(() => store.state.user.user)
+    if (user.value) {
+      router.push({ name: 'User', params: { id: user.value.id } })
     }
 
-    
-    let scheme = yup.object().shape({
+    const scheme = yup.object().shape({
       email: yup.string().email().required(),
-      password: yup.string().min(5).required(),
-    });
-    
+      password: yup.string().min(5).required()
+    })
+
     const entry = async (values) => {
-      await store.dispatch('user/login', values);
-      router.push({name:'User',params:{id:user.value.id}});
-    };
+      await store.dispatch('user/login', values)
+      router.push({ name: 'User', params: { id: user.value.id } })
+    }
     const invalidSubmit = () => {
-      let card = document.getElementsByClassName("card")[0];
-      shake(card);
-    };
+      const card = document.getElementsByClassName('card')[0]
+      shake(card)
+    }
     return {
       invalidSubmit,
       entry,
-      scheme,
-    };
-  },
-};
+      scheme
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

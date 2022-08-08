@@ -1,41 +1,44 @@
 <template>
   <div class="base">
-    <textarea v-model="text" placeholder="Введите текст поста"></textarea>
+    <textarea
+      v-model="text"
+      placeholder="Введите текст поста"
+    />
     <div class="actions">
       <div @click="send">
         <icon-message
           :width="'48px'"
           :height="'48px'"
           :color="'rgb(38, 172, 33)'"
-        ></icon-message>
+        />
       </div>
       <div @click="clear">
         <icon-delete
           :width="'48px'"
           :height="'48px'"
           :color="'rgb(38, 172, 33)'"
-        ></icon-delete>
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { reactive, ref } from 'vue'
 export default {
-  emits: ["send"],
-  setup(props, context) {
-    let text = ref("");
+  emits: ['send'],
+  setup (props, context) {
+    const text = ref('')
     const clear = () => {
-      text.value = "";
-    };
+      text.value = ''
+    }
     const send = () => {
-      context.emit("send", text);
-      clear();
-    };
-    return { text, clear, send };
-  },
-};
+      context.emit('send', text)
+      clear()
+    }
+    return { text, clear, send }
+  }
+}
 </script>
 
 <style scoped lang="scss">

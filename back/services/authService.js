@@ -54,7 +54,6 @@ class AuthService {
 
   async refreshToken(refreshToken){
     const refreshTokenData = dbService.getByField('refreshTokens','refreshToken',refreshToken);
-    console.log(refreshTokenData);
     if(!refreshTokenData){
       throw Error('Token is invalid')
     }

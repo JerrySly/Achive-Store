@@ -1,5 +1,9 @@
 <template>
-  <img class="icon" :src="src" :style="computedSizes" />
+  <img
+    class="icon"
+    :src="src"
+    :style="computedSizes"
+  >
 </template>
 
 <script>
@@ -7,25 +11,25 @@ export default {
   props: {
     src: {
       type: String,
-      required: true,
+      required: true
     },
     width: {
       type: String,
-      default: "50px",
+      default: '50px'
     },
     height: {
       type: String,
-      default: "50px",
-    },
+      default: '50px'
+    }
   },
-  setup(props) {
-    let computedSizes = {
+  setup (props) {
+    const computedSizes = {
       width: props.width,
-      height: props.height,
-    };
-    return { ...props, computedSizes };
-  },
-};
+      height: props.height
+    }
+    return { ...props, computedSizes }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

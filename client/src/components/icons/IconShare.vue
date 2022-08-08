@@ -43,18 +43,18 @@ export default {
   props: {
     width: {
       type: Number,
-      default: 64,
+      default: 64
     },
     height: {
       type: Number,
-      default: 64,
+      default: 64
     },
     color: {
       type: String,
-      default: "#FFF",
-    },
-  },
-};
+      default: '#FFF'
+    }
+  }
+}
 </script>
 
 <style>
