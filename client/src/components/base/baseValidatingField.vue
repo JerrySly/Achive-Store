@@ -31,7 +31,7 @@
 
 <script>
 import { useField } from 'vee-validate'
-import { reactive, ref, toRef } from 'vue'
+import { reactive, toRef } from 'vue'
 export default {
   props: {
     type: {

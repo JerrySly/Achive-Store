@@ -79,15 +79,9 @@
 import { useStore } from 'vuex'
 import * as yup from 'yup'
 import { shake } from '@/helpers/animation-methods.js'
-import { Form, Field, ErrorMessage } from 'vee-validate'
 import { useRouter } from 'vue-router'
 
 export default {
-  components: {
-    Form,
-    Field,
-    ErrorMessage
-  },
   setup () {
     const store = useStore()
     const router = useRouter()

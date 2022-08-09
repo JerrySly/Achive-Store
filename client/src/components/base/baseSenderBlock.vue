@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 export default {
   emits: ['send'],
   setup (props, context) {

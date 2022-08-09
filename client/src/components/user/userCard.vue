@@ -42,16 +42,20 @@
 </template>
 
 <script>
-import { user } from '@/data/user.js'
 import UserProfileAvatar from './userProfileAvatar.vue'
+import { useStore } from 'vuex'
+
 export default {
   components: { UserProfileAvatar },
   props: {
     id: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   setup (props) {
+    const store = useStore()
+    const user = store.state.user.user
     return {
       user
     }

@@ -53,21 +53,15 @@
 </template>
 
 <script>
-import baseInput from '../components/base/baseInput.vue'
 import { useStore } from 'vuex'
 import * as yup from 'yup'
 import BaseButton from '../components/base/baseButton.vue'
-import { Form, Field, ErrorMessage } from 'vee-validate'
 import { shake } from '@/helpers/animation-methods.js'
 import { useRouter } from 'vue-router'
 import { computed } from 'vue'
 export default {
   components: {
-    baseInput,
-    BaseButton,
-    Field,
-    Form,
-    ErrorMessage
+    BaseButton
   },
   setup () {
     const store = useStore()

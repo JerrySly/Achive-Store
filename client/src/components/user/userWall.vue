@@ -8,10 +8,9 @@
 </template>
 
 <script>
-import postItem from '../post/postItem.vue'
 import PostList from '../post/postList.vue'
 export default {
-  components: { postItem, PostList },
+  components: { PostList },
   setup () {}
 }
 </script>

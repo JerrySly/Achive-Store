@@ -16,7 +16,7 @@ axios.interceptors.response.use(
   },
   async (err) => {
     let refreshingToken
-    const { status, data } = err.response
+    const { status } = err.response
     if (status === 401) {
       console.log('401')
 
