@@ -22,7 +22,8 @@ class UserService {
 
   async getCurrentUser () {
     const user = (await axios.get('/user/0')).data
-    return { id, name, surname, email, photo } = user
+    const { id, name, surname, email, photo } = user
+    return { id, name, surname, email, photo }
   }
 
   setAuthorizationHeader (token) {
