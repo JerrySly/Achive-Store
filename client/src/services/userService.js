@@ -32,7 +32,9 @@ class UserService {
 
   async refreshToken () {
     const preRefreshToken = localStorage.getItem('refreshToken')
-    const result = (await axios.post('/refresh', { refreshToken: preRefreshToken })).data
+    const result = (
+      await axios.post('/refresh', { refreshToken: preRefreshToken })
+    ).data
     this._setTokenInfo(result)
   }
 

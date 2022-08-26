@@ -17,6 +17,7 @@
       :style="style"
       :class="{ 'has-error': !!errorMessage}"
       @input="handleChange"
+      @blur="handleBlur"
     >
 
     <p
@@ -31,7 +32,7 @@
 
 <script>
 import { useField } from 'vee-validate'
-import { reactive, toRef } from 'vue'
+import { toRef } from 'vue'
 export default {
   props: {
     type: {
@@ -92,6 +93,7 @@ export default {
     }
   },
   setup (props) {
+    // eslint-disable-next-line
     const style = {
       width: props.width,
       height: props.height,
@@ -105,25 +107,27 @@ export default {
     }
     const errorStyle = {
       'font-size': props.errorFontSize
-
     }
     const name = toRef(props, 'name')
     const {
       value,
       errorMessage,
-      meta,
-      handleChange
-    } = reactive(useField(name, undefined, {
+      handleBlur,
+      handleChange,
+      meta
+    } = useField(name, undefined, {
       initialValue: props.value
-    }))
+    })
+    console.log(value)
     return {
       style,
-      value,
       errorMessage,
       meta,
       labelStyle,
       handleChange,
-      errorStyle
+      errorStyle,
+      value,
+      handleBlur
     }
   }
 }

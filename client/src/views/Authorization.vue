@@ -1,14 +1,10 @@
 <template>
   <div class="wrapper">
+    <form @submit="entry">
     <div class="card">
       <div class="title">
         Авторизация
       </div>
-      <Form
-        :validation-schema="scheme"
-        @invalid-submit="invalidSubmit"
-        @submit="entry"
-      >
         <div class="form">
           <div class="form-item">
             <base-validating-field
@@ -47,8 +43,8 @@
             </base-button>
           </router-link>
         </div>
-      </Form>
     </div>
+    </form>
   </div>
 </template>
 
@@ -59,6 +55,7 @@ import BaseButton from '../components/base/baseButton.vue'
 import { shake } from '@/helpers/animation-methods.js'
 import { useRouter } from 'vue-router'
 import { computed } from 'vue'
+import { useForm } from 'vee-validate'
 export default {
   components: {
     BaseButton
@@ -71,15 +68,20 @@ export default {
       router.push({ name: 'User', params: { id: user.value.id } })
     }
 
-    const scheme = yup.object().shape({
+    const scheme = yup.object({
       email: yup.string().email().required(),
       password: yup.string().min(5).required()
     })
 
-    const entry = async (values) => {
-      await store.dispatch('user/login', values)
-      router.push({ name: 'User', params: { id: user.value.id } })
-    }
+    const { handleSubmit } = useForm({
+      validationSchema: scheme
+    })
+    const entry = handleSubmit(async (values) => {
+      console.log(values)
+      await store.dispatch('user/login', values).then(() => {
+        router.push({ name: 'User', params: { id: user.value.id } })
+      })
+    })
     const invalidSubmit = () => {
       const card = document.getElementsByClassName('card')[0]
       shake(card)

@@ -80,8 +80,9 @@ import { useStore } from 'vuex'
 import * as yup from 'yup'
 import { shake } from '@/helpers/animation-methods.js'
 import { useRouter } from 'vue-router'
-
+import { Form } from 'vee-validate'
 export default {
+  components: { Form },
   setup () {
     const store = useStore()
     const router = useRouter()

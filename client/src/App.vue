@@ -21,8 +21,8 @@ export default {
     const token = computed(() => store.state.user.token)
     if (token.value) {
       userService.setAuthorizationHeader(token.value)
+      store.dispatch('user/getCurrentUser')
     }
-    store.dispatch('user/getCurrentUser')
   }
 }
 </script>
