@@ -16,7 +16,12 @@ export const user = {
     },
     async login ({ commit }, { email, password }) {
       const result = await userService.login(email, password)
-      commit('setUser', result.user)
+      console.log(result)
+      if (result.user) {
+        commit('setUser', result)
+      } else {
+        commit('setError', result.error, { root: true })
+      }
     },
     async getCurrentUser ({ commit }) {
       const result = await userService.getCurrentUser()

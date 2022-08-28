@@ -29,8 +29,9 @@ class AuthService {
 
   async login(email, password) {
     let userRecord = userService.getUserByEmail(email)[0];
-    if(userRecord == null || userRecord == undefined )
-        return null;
+    if(userRecord == null || userRecord == undefined ){
+        throw new Error('Incorrect email')
+    }
     let isVerify = await argon2.verify(userRecord.hashPassword,password);
     const refreshToken = uuidv4();
     dbService.put('refreshTokens',userRecord.id,{

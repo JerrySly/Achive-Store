@@ -15,10 +15,6 @@ export default {
       type: String,
       default: '#fff'
     },
-    backgroundColor: {
-      type: String,
-      default: 'rgb(38, 172, 33)'
-    },
     width: {
       type: String,
       default: '100px'

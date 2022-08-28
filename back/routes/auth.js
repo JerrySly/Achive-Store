@@ -20,17 +20,12 @@ module.exports = (app) => {
     let { email, password } = req.body;
     console.log(req.body)
     try {
-      const result =  await authService.login(email, password);
-      console.log(result);
       let { user, token,refreshToken } = await authService.login(email, password);
-      console.log(user);
       res.json({ user, token,refreshToken }).status(200).end();
     } catch (err) {
-      console.log(err);
-      res.status(403)
-        .json({
-          error: "Login error",
-        })
+      res.json({
+        error: "Login or password incorrect"
+      }).end();
     }
   });
 

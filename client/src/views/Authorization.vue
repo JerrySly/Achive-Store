@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <form @submit="entry">
-    <div class="card">
-      <div class="title">
-        Авторизация
-      </div>
+      <div class="card">
+        <div class="title">
+          Авторизация
+        </div>
         <div class="form">
           <div class="form-item">
             <base-validating-field
@@ -43,7 +43,7 @@
             </base-button>
           </router-link>
         </div>
-    </div>
+      </div>
     </form>
   </div>
 </template>
@@ -76,16 +76,16 @@ export default {
     const { handleSubmit } = useForm({
       validationSchema: scheme
     })
-    const entry = handleSubmit(async (values) => {
-      console.log(values)
-      await store.dispatch('user/login', values).then(() => {
-        router.push({ name: 'User', params: { id: user.value.id } })
-      })
-    })
-    const invalidSubmit = () => {
+    const invalidSubmit = (arg) => {
       const card = document.getElementsByClassName('card')[0]
       shake(card)
     }
+    const entry = handleSubmit(async (values) => {
+      store.dispatch('user/login', values).then(() => {
+        if (user.value) { router.push({ name: 'User', params: { id: user.value.id } }) }
+      }
+      )
+    }, invalidSubmit)
     return {
       invalidSubmit,
       entry,

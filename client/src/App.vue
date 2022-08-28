@@ -2,6 +2,26 @@
   <div>
     <nav-bar />
     <div class="main-wrapper">
+      <Transition name="slide">
+      <div class="dialog-wrapper" v-if="error">
+      <base-dialog >
+        <template #header>
+          <span class="error-title">Ошибка</span>
+        </template>
+        {{ error }}
+        <template #actions>
+          <base-button
+            class="cancel-btn"
+            :color="'white'"
+            :height="'40px'"
+            @click="clearError"
+          >
+            Cancel
+          </base-button>
+        </template>
+      </base-dialog>
+      </div>
+      </Transition>
       <router-view />
     </div>
   </div>
@@ -23,10 +43,30 @@ export default {
       userService.setAuthorizationHeader(token.value)
       store.dispatch('user/getCurrentUser')
     }
+    const error = computed(() => store.state.error)
+    const clearError = () => {
+      store.commit('setError', null)
+    }
+    return {
+      error,
+      clearError
+    }
   }
 }
 </script>
-<style>
+<style >
+
+.dialog-wrapper{
+  position: absolute;
+  display: flex;
+  width: 80%;
+  height: 100vh;
+  justify-content: center;
+}
+.error-title {
+  color:red;
+  font-size: 32px;
+}
 .main-wrapper{
   margin: 20px 0px;
   padding:0px 10%;

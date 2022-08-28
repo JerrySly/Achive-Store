@@ -6,10 +6,13 @@ class UserService {
   }
 
   async login (email, password) {
-    const result = (await axios.post('/login', { email, password })).data
-    this._setTokenInfo(result)
-    this.setAuthorizationHeader(result.token)
-    return result
+    const result = (await axios.post('/login', { email, password }))
+    if (result.data.error) {
+      return result.data
+    }
+    this._setTokenInfo(result.data)
+    this.setAuthorizationHeader(result.data.token)
+    return result.data
   }
 
   isLogin () {

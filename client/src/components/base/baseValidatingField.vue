@@ -118,7 +118,6 @@ export default {
     } = useField(name, undefined, {
       initialValue: props.value
     })
-    console.log(value)
     return {
       style,
       errorMessage,
