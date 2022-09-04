@@ -3,6 +3,7 @@
     :style="computedStyle"
     :type="type"
     @click="$emit('click')"
+    class="cancel-btn"
   >
     <slot />
   </button>
@@ -52,12 +53,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-button{
-    cursor: pointer;
-    outline: none;
-    border: none;
-}
-
-</style>

@@ -2,9 +2,8 @@
   <div>
     <nav-bar />
     <div class="main-wrapper">
-      <Transition name="slide">
-      <div class="dialog-wrapper" v-if="error">
-      <base-dialog >
+      <div class="dialog-wrapper" v-show="error">
+      <base-dialog  class="slide-enter-active">
         <template #header>
           <span class="error-title">Ошибка</span>
         </template>
@@ -21,7 +20,6 @@
         </template>
       </base-dialog>
       </div>
-      </Transition>
       <router-view />
     </div>
   </div>
@@ -60,7 +58,7 @@ export default {
   position: absolute;
   display: flex;
   width: 80%;
-  height: 100vh;
+  height: 50vh;
   justify-content: center;
 }
 .error-title {
@@ -71,29 +69,5 @@ export default {
   margin: 20px 0px;
   padding:0px 10%;
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 
-}
-body{
-   background-color: #fddddd59;
-   padding: 0;
-   margin: 0;
-}
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

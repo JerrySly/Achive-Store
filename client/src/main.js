@@ -7,6 +7,7 @@ import camelCase from 'lodash/camelCase'
 import { lowerFirst } from 'lodash'
 import axios from 'axios'
 import userService from './services/userService'
+import './styles/global.scss'
 const Vue = createApp(App)
 
 axios.defaults.baseURL = 'http://localhost:5000'
