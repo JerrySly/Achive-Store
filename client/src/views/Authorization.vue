@@ -64,7 +64,7 @@ export default {
     const store = useStore()
     const router = useRouter()
     const user = computed(() => store.state.user.user)
-    if (user.value) {
+    if (user.value && user.value !== undefined) {
       router.push({ name: 'User', params: { id: user.value.id } })
     }
 
@@ -81,10 +81,8 @@ export default {
       shake(card)
     }
     const entry = handleSubmit(async (values) => {
-      store.dispatch('user/login', values).then(() => {
-        if (user.value) { router.push({ name: 'User', params: { id: user.value.id } }) }
-      }
-      )
+      await store.dispatch('user/login', values)
+      if (user.value) { router.push({ name: 'User', params: { id: user.value.id } }) }
     }, invalidSubmit)
     return {
       invalidSubmit,

@@ -1,30 +1,18 @@
 {
     "users": {
-        "7a209704-03fe-438f-8721-0db888f3b823": {
-            "id": "7a209704-03fe-438f-8721-0db888f3b823",
-            "name": "Евгеинй",
-            "surname": "Алексеев",
+        "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8": {
+            "id": "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8",
+            "name": "Eugene",
+            "surname": "Alekseev",
             "email": "eugeale@yandex.ru",
-            "hashPassword": "$argon2id$v=19$m=4096,t=3,p=1$uSE2AVjSNndyu9UPyoBQ1A$fLSTdOWyA/7A743OtyYfV7pvSqQDWmpW5a1H7gQs4w4",
-            "photo": null
-        },
-        "46e29cba-9dbf-4292-b667-0fe740e2059b": {
-            "id": "46e29cba-9dbf-4292-b667-0fe740e2059b",
-            "name": "Алексей",
-            "surname": "Янзеев",
-            "email": "jekasyper007@yandex.ru",
-            "hashPassword": "$argon2id$v=19$m=4096,t=3,p=1$leFsz3HLJGAk4pIMJbeJ8Q$mr7EltaR76tX7kGQFNhwJQTTlLraoKvOBVCG+RbMsPQ",
+            "hashPassword": "$argon2id$v=19$m=4096,t=3,p=1$mhmbg1UcsH7TGAI4FrOZ/w$0IbJP14e/g24gYfgCka7K068FOykwl3+ODMP4ZinqQA",
             "photo": null
         }
     },
     "refreshTokens": {
-        "7a209704-03fe-438f-8721-0db888f3b823": {
-            "userId": "7a209704-03fe-438f-8721-0db888f3b823",
-            "refreshToken": "0ac18781-d818-4ae2-9f88-46e255a65ad4"
-        },
-        "46e29cba-9dbf-4292-b667-0fe740e2059b": {
-            "userId": "46e29cba-9dbf-4292-b667-0fe740e2059b",
-            "refreshToken": "3ab0e0ca-3611-4e90-bf40-6b7055cbab92"
+        "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8": {
+            "userId": "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8",
+            "refreshToken": "4d796386-75ec-4b14-a85b-207b7e87f43c"
         }
     }
 }

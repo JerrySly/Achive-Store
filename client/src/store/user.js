@@ -18,7 +18,7 @@ export const user = {
       const result = await userService.login(email, password)
       console.log(result)
       if (result.user) {
-        commit('setUser', result)
+        commit('setUser', result.user)
       } else {
         commit('setError', result.error, { root: true })
       }
