@@ -5,6 +5,9 @@
     min-width: 400px;
     max-width: 600px;
     padding: 10px 0 10px 0;
+    background-color: white;
+    border: 1px solid $main-color;
+    border-radius: 5px;
   
     .top {
        text-align: left;
