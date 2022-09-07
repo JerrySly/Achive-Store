@@ -2,8 +2,8 @@
   <button
     :style="computedStyle"
     :type="type"
-    @click="$emit('click')"
     class="cancel-btn"
+    @click="$emit('click')"
   >
     <slot />
   </button>

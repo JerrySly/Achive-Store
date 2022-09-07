@@ -1,29 +1,28 @@
 <template>
-  <div class="wrapper">
+  <div class="nav-wrapper">
     <ul>
       <li class="spacer" />
-      <li class="logo">
+      <li class="logo href">
         Achive Store
       </li>
-      <li>
+      <li class="href">
         <router-link :to="{ name: 'User', params: { id: 1 } }">
           <icon-home />
         </router-link>
       </li>
-      <li>
+      <li class="href">
         <router-link :to="{ name: 'Achieves' }">
           <icon-achives />
         </router-link>
       </li>
-      <li>
+      <li class="href">
         <router-link :to="{ name: 'Messages' }">
           <icon-message />
         </router-link>
       </li>
-      <li>
-        <router-link :to="{ name: 'Messages' }">
-          <icon-cog />
-        </router-link>
+      <li @click="changeSettingsDialog(true)" class="href">
+        <div><icon-cog /></div>
+        <base-drop-list v-click-out="settingsDialog=false" v-if="settingsDialog" :items="settingsList"/>
       </li>
       <li class="spacer" />
     </ul>
@@ -31,31 +30,34 @@
 </template>
 
 <script>
-export default {}
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import baseDropList from '../base/baseDropList.vue'
+export default {
+  components: { baseDropList },
+  setup () {
+    const router = useRouter()
+    const store = useStore()
+    let settingsDialog = false
+    const changeSettingsDialog = (value) => {
+      console.log('value')
+      settingsDialog = value
+    }
+    const settingsList = [
+      { text: 'Настройки профиля', action: () => { console.log('Route to settings') } },
+      {
+        text: 'Выйти из аккаунта',
+        action: async () => {
+          await store.dispatch('user/logout')
+          router.push({ name: 'Authorization' })
+        }
+      }
+    ]
+    return {
+      settingsList,
+      settingsDialog,
+      changeSettingsDialog
+    }
+  }
+}
 </script>
-<style lang="scss" scoped>
-.wrapper {
-  background-color: $main-color;
-  color: white;
-  font-family: $main-font;
-  padding: 5px 0px;
-}
-ul {
-  display: flex;
-  list-style: none;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  li {
-    flex: 1;
-  }
-  .spacer {
-    flex: 3;
-  }
-}
-.logo {
-  font-size: 28px;
-  cursor: pointer;
-  font-weight: 700;
-}
-</style>

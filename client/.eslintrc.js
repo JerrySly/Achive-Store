@@ -4,7 +4,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/no-dupe-keys': 'off',
     'vue/multi-word-component-names': 'off',
-    'vue/no-reserved-component-names': 'off'
+    'vue/no-reserved-component-names': 'off',
+    'prefer-const': 'off'
   },
 
   root: true,

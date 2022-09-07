@@ -11,6 +11,11 @@ export const user = {
     }
   },
   actions: {
+    async logout ({ commit }) {
+      commit('setUser', null)
+      localStorage.removeItem('token')
+      localStorage.removeItem('refreshToken')
+    },
     async singUp ({ commit }, userInfo) {
       await userService.registration(userInfo)
     },

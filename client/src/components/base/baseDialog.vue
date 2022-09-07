@@ -9,11 +9,11 @@
       <slot />
     </div>
     <div class="bottom">
-      <slot name="actions" >
+      <slot name="actions">
         <base-button
-          :height="'40px'"
           v-for="(btn, index) in actions"
           :key="index"
+          :height="'40px'"
           @click="btn.action"
         >
           {{ btn.text }}

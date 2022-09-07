@@ -2,23 +2,26 @@
   <div>
     <nav-bar />
     <div class="main-wrapper">
-      <div class="dialog-wrapper" v-show="error">
-      <base-dialog  class="slide-enter-active">
-        <template #header>
-          <span class="error-title">Ошибка</span>
-        </template>
-        {{ error }}
-        <template #actions>
-          <base-button
-            class="cancel-btn"
-            :color="'white'"
-            :height="'40px'"
-            @click="clearError"
-          >
-            Cancel
-          </base-button>
-        </template>
-      </base-dialog>
+      <div
+        v-show="error"
+        class="dialog-wrapper"
+      >
+        <base-dialog class="slide-enter-active">
+          <template #header>
+            <span class="error-title">Ошибка</span>
+          </template>
+          {{ error }}
+          <template #actions>
+            <base-button
+              class="cancel-btn"
+              :color="'white'"
+              :height="'40px'"
+              @click="clearError"
+            >
+              Cancel
+            </base-button>
+          </template>
+        </base-dialog>
       </div>
       <router-view />
     </div>
@@ -52,7 +55,7 @@ export default {
   }
 }
 </script>
-<style >
+<style>
 
 .dialog-wrapper{
   position: absolute;

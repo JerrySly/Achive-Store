@@ -10,6 +10,21 @@ import userService from './services/userService'
 import './styles/global.scss'
 const Vue = createApp(App)
 
+Vue.directive('click-out', {
+  mounted (el, callback) {
+    el.addEventListener('click', (event) => {
+      event.stopPropagation()
+    })
+    document.body.addEventListener('click', callback)
+  },
+  unmounted (el, callback) {
+    el.removeEventListener('click', (event) => {
+      event.stopPropagation()
+    })
+    document.body.removeEventListener('click', callback)
+  }
+})
+
 axios.defaults.baseURL = 'http://localhost:5000'
 axios.interceptors.response.use(
   (response) => {
