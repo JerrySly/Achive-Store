@@ -21,16 +21,10 @@ export default {
     }
   },
   setup (props) {
-    console.log(props)
     const items = ref(props.items)
-    console.log(items)
     return {
       items
     }
   }
 }
 </script>
-
-<style>
-
-</style>

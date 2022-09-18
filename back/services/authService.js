@@ -79,7 +79,7 @@ class AuthService {
       email: user.email,
     };
     const devSignature = "vHTu634_I3kr3Z";
-    const expiration = "2m";
+    const expiration = "2h";
 
     return jwt.sign({ data }, devSignature, { expiresIn: expiration });
   }

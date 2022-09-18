@@ -11,17 +11,19 @@ import './styles/global.scss'
 const Vue = createApp(App)
 
 Vue.directive('click-out', {
-  mounted (el, callback) {
+  mounted (el, binding) {
     el.addEventListener('click', (event) => {
       event.stopPropagation()
     })
-    document.body.addEventListener('click', callback)
+    document.body.addEventListener('click', () => {
+      binding.value(false)
+    })
   },
-  unmounted (el, callback) {
+  unmounted (el, binding) {
     el.removeEventListener('click', (event) => {
       event.stopPropagation()
     })
-    document.body.removeEventListener('click', callback)
+    document.body.removeEventListener('click', () => { binding.value(false) })
   }
 })
 

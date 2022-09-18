@@ -5,6 +5,7 @@
     color: $main-color;
     padding: 15px 0px;
     border-radius: 8px;
+    z-index: 20;
     .base-drop-item{
         padding: 5px 10px;
         transition: 0.3s ease-in-out;
