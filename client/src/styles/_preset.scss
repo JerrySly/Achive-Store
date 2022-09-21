@@ -49,3 +49,12 @@ button:hover {
     color: $font-color;
     font-family: $main-font;
 }
+
+
+.row {
+    display: flex;
+    .spacer{
+      flex:0.5;
+      flex-shrink: 1.5;
+    }
+}

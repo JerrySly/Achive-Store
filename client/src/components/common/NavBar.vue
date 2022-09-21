@@ -20,9 +20,16 @@
           <icon-message />
         </router-link>
       </li>
-      <li @click="changeSettingsDialog(true, $event)" class="href">
+      <li
+        class="href"
+        @click="changeSettingsDialog(true, $event)"
+      >
         <div><icon-cog /></div>
-        <base-drop-list v-click-out="changeSettingsDialog"   v-if="settingsDialog" :items="settingsList"/>
+        <base-drop-list
+          v-if="settingsDialog"
+          v-click-out="changeSettingsDialog"
+          :items="settingsList"
+        />
       </li>
       <li class="spacer" />
     </ul>

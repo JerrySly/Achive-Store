@@ -37,5 +37,12 @@ class DataBaseService{
         }
         return resultArray;
     }
+    getAll(tableName){
+        try{
+         return db.getData(`/${tableName}`)
+        }catch(ex){
+            return null;
+        }
+    }
 }
 module.exports = new DataBaseService();

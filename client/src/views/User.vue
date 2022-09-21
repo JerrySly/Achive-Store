@@ -36,11 +36,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.row {
-  display: flex;
-  .spacer{
-    flex:0.5;
-    flex-shrink: 1.5;
-  }
-}
+
 </style>

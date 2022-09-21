@@ -38,5 +38,22 @@ class FriendService{
         dbService.delete('friendships', myFriendship.id)
         dbService.delete('friendships', hisFriendship.id)
     }
+
+    getPossibleFriends(currentUserId,pageSize,pageNumber){
+        const usersObject = dbService.getAll('users');
+        let users = [];
+        for(let id in usersObject){
+            users.push(usersObject[id]);
+        }
+        users = users.filter(x=>x.id != currentUserId);
+        const friendships =  dbService.getAll('friendships');
+        console.log('Friendships: ',friendships,friendships == null);
+        if(!friendships || friendships === null)
+            return []
+        const usersId = friendships.filter(x=>x.firstUser == currentUserId).map(x=>x.secondUser);
+        if(usersId != [])
+            users = users.filter(x=>usersId.find(x.id) == -1)
+        return users.slice(pageSize*pageNumber,(pageSize*pageNumber)+pageSize);
+    }
 }
-module.export = new FriendService();
+module.exports = new FriendService();

@@ -7,12 +7,24 @@
             "email": "eugeale@yandex.ru",
             "hashPassword": "$argon2id$v=19$m=4096,t=3,p=1$mhmbg1UcsH7TGAI4FrOZ/w$0IbJP14e/g24gYfgCka7K068FOykwl3+ODMP4ZinqQA",
             "photo": null
+        },
+        "2d4cc518-609c-4247-9e2d-f43bfc6cb20c": {
+            "id": "2d4cc518-609c-4247-9e2d-f43bfc6cb20c",
+            "name": "Ruslan",
+            "surname": "Vildanov",
+            "email": "jekasyper007@yandex.ru",
+            "hashPassword": "$argon2id$v=19$m=4096,t=3,p=1$CxZubYHz4mbtpP8IXw1ZXw$PXufZ+uIjF9L4nQ+UWhtJbWGz9B0aLoz5sOIKQ5e67c",
+            "photo": null
         }
     },
     "refreshTokens": {
         "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8": {
             "userId": "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8",
-            "refreshToken": "17028492-5293-49bd-8481-0538af9c15d5"
+            "refreshToken": "29ce0e9e-6d20-4dbb-9b56-8673dc3ef623"
+        },
+        "2d4cc518-609c-4247-9e2d-f43bfc6cb20c": {
+            "userId": "2d4cc518-609c-4247-9e2d-f43bfc6cb20c",
+            "refreshToken": "d4c53d54-df6a-414e-9000-e28511e715c6"
         }
     }
 }
