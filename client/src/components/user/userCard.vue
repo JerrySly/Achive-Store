@@ -21,20 +21,51 @@
       <span>Онлайн</span>
     </div>
     <div class="action-block">
-      <div style="margin-bottom: 10px">
+      <div style="margin-bottom: 10px" >
         <base-button
           width="300px"
           height="40px"
+          v-if="isCurrentUser"
         >
           Поделиться профилем
         </base-button>
+        <base-button
+          width="300px"
+          height="40px"
+          v-else
+        >
+          Написать сообщение
+        </base-button>
       </div>
-      <div>
+      <div v-if="isCurrentUser">
         <base-button
           width="300px"
           height="40px"
         >
           Настройки профиля
+        </base-button>
+      </div>
+      <div v-if="!isCurrentUser">
+        <base-button
+          width="300px"
+          height="40px"
+          v-if="!isFriend && !isFriendRequest"
+        >
+          Добавить в друзья
+        </base-button>
+        <base-button
+          width="300px"
+          height="40px"
+          v-if="isFriend"
+        >
+          Удалить из друзей
+        </base-button>
+        <base-button
+          width="300px"
+          height="40px"
+          v-if="isFriendRequest"
+        >
+          Ответить на запрос
         </base-button>
       </div>
     </div>
@@ -43,21 +74,38 @@
 
 <script>
 import UserProfileAvatar from './userProfileAvatar.vue'
+import FriendService from '@/services/friendService'
+import { FRIENDSHIP_STATUSES } from '@/constants/common'
 import { useStore } from 'vuex'
-
+import { computed, reactive } from 'vue'
 export default {
-  components: { UserProfileAvatar },
   props: {
-    id: {
-      type: String,
-      default: ''
+    user: {
+      type: Object,
+      require: true
     }
   },
+  components: { UserProfileAvatar },
   setup (props) {
     const store = useStore()
-    const user = store.state.user.user
+    const currentUser = store.state.user.user
+    const user = reactive(props.user)
+    const friendshipState = FriendService.getStatusFriendship(user.id)
+    const isCurrentUser = computed(() => {
+      return user.id === currentUser.id
+    })
+    const isFriend = computed(() => {
+      return friendshipState === FRIENDSHIP_STATUSES.FRIEND
+    })
+    const isFriendRequest = computed(() => {
+      return friendshipState === FRIENDSHIP_STATUSES.REQUEST
+    })
     return {
-      user
+      currentUser,
+      user,
+      isCurrentUser,
+      isFriend,
+      isFriendRequest
     }
   }
 }

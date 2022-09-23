@@ -17,9 +17,11 @@ export default {
   components: { usersCardList },
   setup () {
     let users = reactive([])
-    friendService.getPossibleFriends().then(data => { users = data })
+    let possibleFriends = reactive([])
+    friendService.getPossibleFriends().then(data => { users = data }).then(x => possibleFriends.push([...x]))
     return {
-      users
+      users,
+      possibleFriends
     }
   }
 }

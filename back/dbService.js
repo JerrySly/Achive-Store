@@ -29,13 +29,17 @@ class DataBaseService{
         return db.getData(`/${tableName}/${id}`)
     }
     getByField(tableName,fieldName,value){
-        let table = db.getData(`/${tableName}`)
-        let resultArray = [];
-        for(let entityId in table){
-            if(table[entityId][fieldName] === value)
-                resultArray.push(table[entityId])
+        try {
+            let table = db.getData(`/${tableName}`)
+            let resultArray = [];
+            for(let entityId in table){
+                if(table[entityId][fieldName] === value)
+                    resultArray.push(table[entityId])
+            }
+            return resultArray;
+        } catch(ex) {
+            return null;
         }
-        return resultArray;
     }
     getAll(tableName){
         try{

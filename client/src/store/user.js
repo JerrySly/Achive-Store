@@ -21,7 +21,6 @@ export const user = {
     },
     async login ({ commit }, { email, password }) {
       const result = await userService.login(email, password)
-      console.log(result)
       if (result.user) {
         commit('setUser', result.user)
       } else {

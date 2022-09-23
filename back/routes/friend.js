@@ -11,7 +11,7 @@ module.exports = (app) =>{
         friendService.sendRequest(currentUserId,friendId);
         res.status(200).end();
     })
-    app.get('friend/:friendId', (req,res) =>{
+    app.get('/friend/:friendId', (req,res) =>{
         const {friendId} = req.params;
         const currentUserId = getCurrentUserId(req);
         const result = friendService.getFriendship(currentUserId,friendId);

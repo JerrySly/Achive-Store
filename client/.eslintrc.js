@@ -5,7 +5,8 @@ module.exports = {
     'vue/no-dupe-keys': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/no-reserved-component-names': 'off',
-    'prefer-const': 'off'
+    'prefer-const': 'off',
+    'vue/prefer-import-from-vue': 'off'
   },
 
   root: true,

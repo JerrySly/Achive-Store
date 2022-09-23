@@ -9,16 +9,29 @@ class FriendService{
             id,
             firstUser: currentUserId,
             secondUser: friendId,
-            state: friendshipState.request
+            state: friendshipState.REQUEST
         })
     }
     isFriend(currentUserId,friendId){
         return this.getFriendship(currentUserId,friendId).state === friendshipState.friend
     }
-    getFriendship(currentUserId,friendId){
-        const results = dbService.getByField('friendships','firstName',currentUserId)
-        const [friendship] = results.filter(x=>x.secondUser == friendId);
-        return friendship;
+    getFriendship(currentUserId,friendId) {
+        let resultState = friendshipState.NONE;
+        let friendship = null;
+
+        try{
+            const results = dbService.getByField('friendships','firstName',currentUserId)
+            friendship = results?.filter(x=>x.secondUser == friendId);
+        }
+        catch(ex){
+            console.log('Friendships get: ',ex)
+            friendship = null;
+        }
+        
+        if(friendship && friendship.length == 1){
+            resultState = friendship[0].state;
+        }
+        return resultState;
     }
     approveRequest(currentUserId,friendId){
         const friendship = this.getFriendship(currentUserId,friendId);
@@ -29,7 +42,7 @@ class FriendService{
             id:friendship.id,
             firstUser: friendship.firstUser,
             secondUser: friendship.secondUser,
-            state: friendshipState.friend
+            state: friendshipState.FRIEND
         })
     }
     removeFromFriend(currentUserId,friendId){

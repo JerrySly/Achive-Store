@@ -18,13 +18,13 @@
         }
     },
     "refreshTokens": {
-        "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8": {
-            "userId": "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8",
-            "refreshToken": "29ce0e9e-6d20-4dbb-9b56-8673dc3ef623"
-        },
         "2d4cc518-609c-4247-9e2d-f43bfc6cb20c": {
             "userId": "2d4cc518-609c-4247-9e2d-f43bfc6cb20c",
-            "refreshToken": "d4c53d54-df6a-414e-9000-e28511e715c6"
+            "refreshToken": "e16adfde-445b-4e24-8595-c3c8b4fa7d72"
+        },
+        "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8": {
+            "userId": "c9475650-dd1c-4b8d-9f5b-b5343c2fa8a8",
+            "refreshToken": "13649a74-45ef-45f7-b242-e8aa066f3901"
         }
     }
 }

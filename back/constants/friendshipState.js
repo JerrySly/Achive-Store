@@ -1,4 +1,5 @@
-module.export = {
-    request: 0,
-    friend: 1
+module.exports = {
+    NONE: 0,
+    REQUEST: 1,
+    FRIEND: 2
 }
